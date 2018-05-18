@@ -22,9 +22,15 @@ public class ControllerShortURL {
     }
 
     @RequestMapping(method = RequestMethod.POST , value = "urls")
-    public void Add(@RequestBody URL url)
+    public void add(@RequestBody URL url)
     {
          urlService.addUrl(url);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE,value = "urls/{id}")
+    public void remove(@PathVariable String id)
+    {
+        urlService.delete(id);
     }
 
 
