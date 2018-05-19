@@ -14,14 +14,13 @@ public class ControllerShortURL {
     @Autowired
     private ShortUrlService urlService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @RequestMapping("/urls")
     public List<URL> getAllUrls()
     {
        return urlService.getAllUrls();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(method = RequestMethod.POST , value = "urls")
     public void add(@RequestBody String actualURL)
     {
@@ -29,7 +28,7 @@ public class ControllerShortURL {
     }
 
     @RequestMapping(method = RequestMethod.DELETE,value = "urls/{id}")
-    public void remove(@PathVariable String id)
+    public void remove(@PathVariable int id)
     {
         urlService.delete(id);
     }
