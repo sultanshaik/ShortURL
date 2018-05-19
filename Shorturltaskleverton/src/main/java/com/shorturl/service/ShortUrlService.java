@@ -14,8 +14,8 @@ public class ShortUrlService {
 
     List<URL> listofurls =  new ArrayList<URL>(
             Arrays.asList(
-                    new URL("123","facebook.com","face"),
-                    new URL("23","andjndkankadkas","ands")
+                    new URL("123","facebook.com",hashShortString("facebook.com")),
+                    new URL("23","andjndkankadkas",hashShortString("andjndkankadkas"))
     ));
     static Random random = new Random();
 
@@ -24,8 +24,9 @@ public class ShortUrlService {
         return listofurls;
     }
 
-    public void addUrl(URL url)
+    public void addUrl(String actualURL)
     {
+        URL url = new URL(Integer.toString(random.nextInt(100)),actualURL , hashShortString(actualURL));
         listofurls.add(url);
     }
 
@@ -46,7 +47,7 @@ public class ShortUrlService {
 
             }
 
-            hashString.append(s.charAt(100));
+            hashString.append(s.charAt(index));
 
         }
 

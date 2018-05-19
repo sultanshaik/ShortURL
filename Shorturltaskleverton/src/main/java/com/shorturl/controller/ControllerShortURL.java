@@ -21,10 +21,11 @@ public class ControllerShortURL {
        return urlService.getAllUrls();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(method = RequestMethod.POST , value = "urls")
-    public void add(@RequestBody URL url)
+    public void add(@RequestBody String actualURL)
     {
-         urlService.addUrl(url);
+         urlService.addUrl(actualURL);
     }
 
     @RequestMapping(method = RequestMethod.DELETE,value = "urls/{id}")
