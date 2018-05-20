@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-
+import "./Listcomponent.css";
 class ListComponent extends Component{
-
-    constructor(props)
-    {
-      super(props);
-    }
 
     componentWillReceiveProps(nextProps)
     {
@@ -15,36 +10,38 @@ class ListComponent extends Component{
       }
     }
 
+    handleDelete=(e)=>{
+        this.props.DeleteURL;
+    }
+
     render() {
       return (
-        <div>
+        <div className = "List-body">
           <table>
-  <thead>
-  <tr>
-        <td>Actual Url</td>
-        <td>Short URl</td>
-  </tr>
-  </thead>
-  <tbody>
-  {
-    this.props.listofUrls.map((x,i)=>{
-          return(
-                  <tr key={i}>
-                  <td>{x.actualURL}</td>
-                  <td>{x.shortURL}</td>
-                  </tr>
+            <thead>
+              <tr>
+                <td>Url</td>
+                <td>Shortened version of the url</td>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                this.props.listofUrls.map((x,i)=>{
+                  return(
+                    <tr key={i}>
+                      <td>{x.actualURL}</td>
+                      <td>{x.shortURL}</td>
+                      <td><button className="Button-delete" onClick = {this.handleDelete}>Remove</button></td>
+                    </tr>
                 )
-          }
-  )}
+              }
+            )}
 
-  </tbody>
-   </table>
-
-
+            </tbody>
+          </table>
         </div>
       );
     }
-
 }
 
 export default ListComponent;

@@ -14,13 +14,14 @@ public class ControllerShortURL {
     @Autowired
     private ShortUrlService urlService;
 
-
+    @CrossOrigin("http://localhost:3000")
     @RequestMapping("/urls")
     public List<URL> getAllUrls()
     {
        return urlService.getAllUrls();
     }
 
+    @CrossOrigin("http://localhost:3000")
     @RequestMapping(method = RequestMethod.POST , value = "urls")
     public void add(@RequestBody String actualURL)
     {

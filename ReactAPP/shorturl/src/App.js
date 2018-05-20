@@ -16,14 +16,16 @@ class App extends Component {
 
   fetchUrls(){
 
-    fetch("http://localhost:8080/urls").
-          then(response=>response.json()).
-              then(response =>
+    fetch("http://localhost:8080/urls")
+          .then(response=>response.json())
+              .then(response =>
                 {
                   this.setState(
                       {listofUrls : this.filter(response)}
                 )
-              }).catch(function(error) {
+              }
+            ).catch(function(error) {
+                console.log(error)
   });
 }
 
@@ -46,7 +48,7 @@ class App extends Component {
         var initvalues = {
             method: 'POST',
             headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'text/plain'
                   },
             body:    this.state.Urltoshorten
           }
@@ -65,13 +67,15 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className = "App-body">
+          <span className="glyphicons glyphicons-wifi-alt"></span>
+          <h1>URL Shortener</h1>
 		      <form>
 		            <input 	type="text"
 		            placeholder="Url to shorten" value = {this.state.Urltoshorten} onChange = {this.handleChange} />
-		<button className="" onClick = {this.handleSubmit}  >Add Url</button>
-		</form>
-    <ListComponent listofUrls = {this.state.listofUrls} />
+		            <button className="Button-add" onClick = {this.handleSubmit}  >Add Url</button>
+		      </form>
+          <ListComponent listofUrls = {this.state.listofUrls} />
 	  </div>
     );
   }
