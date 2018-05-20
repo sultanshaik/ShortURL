@@ -15,7 +15,7 @@ class App extends Component {
 }
 
 testforValidURL(input){
-        return input.startsWith("http://") && input.length>11F;
+        return input.startsWith("http://") && input.length>11;
 }
 
   fetchUrls(){
