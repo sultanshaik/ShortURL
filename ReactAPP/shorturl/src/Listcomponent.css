@@ -2,14 +2,6 @@
 .List-body{
   text-align: center;
   margin:auto;
-  width: 70%;
-}
-Button{
-      height: 46px;
-      padding: 10px 16px;
-      font-size: 18px;
-      border-radius: 6px;
-      color: #ffffff;
 }
 
 .Button-add{
@@ -17,6 +9,11 @@ Button{
   border: none;
 }
 .Button-delete{
-    background-color: #d13c3c;
+    background-color: #fffff;
+    color: #d13c3c;
     border: none;
+}
+
+td{
+  
 }

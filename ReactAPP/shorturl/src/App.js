@@ -7,11 +7,15 @@ class App extends Component {
   constructor()
   {
     super();
-    this.state = {listofUrls:[], Urltoshorten:''}
+    this.state = {listofUrls:[], Urltoshorten:'', isValidURl: true}
   }
 
   filter(x){
   return	x;
+}
+
+testforValidURL(input){
+        return input.startsWith("http://") && input.length>11F;
 }
 
   fetchUrls(){
@@ -36,11 +40,7 @@ class App extends Component {
 
   handleChange =(e)=>
   {
-    this.setState({Urltoshorten : e.target.value}, ()=>
-      {
-        console.log(this.state.Urltoshorten)
-      }
-    );
+    this.setState({Urltoshorten : e.target.value});
   }
 
   addNewUrl()
@@ -53,7 +53,7 @@ class App extends Component {
             body:    this.state.Urltoshorten
           }
           fetch("http://localhost:8080/urls" ,initvalues)
-          .then(this.fetchUrls())
+          .then(()=>this.fetchUrls())
           .catch(error=>{});
 
 
@@ -62,7 +62,23 @@ class App extends Component {
   handleSubmit = (e)=>
   {
       e.preventDefault();
-      this.addNewUrl();
+      let validity = this.testforValidURL(this.state.Urltoshorten);
+      this.setState({isValidURl : validity} );
+      if(validity)
+      {
+        this.addNewUrl();
+
+      }
+  }
+
+  deleteURL = (id)=>
+  {
+    var initvalues = {
+        method: 'DELETE'
+      }
+      fetch("http://localhost:8080/urls/"+id ,initvalues)
+      .then(()=>this.fetchUrls())
+      .catch(error=>{});
   }
 
   render() {
@@ -73,9 +89,10 @@ class App extends Component {
 		      <form>
 		            <input 	type="text"
 		            placeholder="Url to shorten" value = {this.state.Urltoshorten} onChange = {this.handleChange} />
-		            <button className="Button-add" onClick = {this.handleSubmit}  >Add Url</button>
+		            <button className="Button-add" onClick = {(e)=>this.handleSubmit(e)}  >Add Url</button>
 		      </form>
-          <ListComponent listofUrls = {this.state.listofUrls} />
+          {this.state.isValidURl ?  null: <p><small>Please enter a valid url starting with "http://"</small></p> }
+          {this.state.listofUrls.length ? <ListComponent listofUrls = {this.state.listofUrls} deleteURL = {this.deleteURL} /> : null}
 	  </div>
     );
   }

@@ -28,6 +28,7 @@ public class ControllerShortURL {
          urlService.addUrl(actualURL);
     }
 
+    @CrossOrigin("http://localhost:3000")
     @RequestMapping(method = RequestMethod.DELETE,value = "urls/{id}")
     public void remove(@PathVariable int id)
     {

@@ -25,6 +25,13 @@ public class ShortUrlService {
 
     public void addUrl(String actualURL)
     {
+        List<URL> listofurls =  new ArrayList<URL>();
+        shortUrlRepository.findAll().forEach(listofurls::add);
+        for(URL x :listofurls)
+        {
+            if(x.getActualURL().equals(actualURL))
+                return;
+        }
         URL url = new URL(actualURL);
         shortUrlRepository.save(url);
     }

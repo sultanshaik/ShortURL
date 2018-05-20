@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./Listcomponent.css";
+import 'react-bootstrap';
 class ListComponent extends Component{
 
     componentWillReceiveProps(nextProps)
@@ -10,8 +11,9 @@ class ListComponent extends Component{
       }
     }
 
-    handleDelete=(e)=>{
-        this.props.DeleteURL;
+    handleDelete=(id)=>{
+        if(window.confirm("Do you really want to remove this url?"))
+        this.props.deleteURL(id);
     }
 
     render() {
@@ -20,8 +22,8 @@ class ListComponent extends Component{
           <table>
             <thead>
               <tr>
-                <td>Url</td>
-                <td>Shortened version of the url</td>
+                <td className = "well"><h3>Url</h3></td>
+                <td className = "well"><h3>Shortened version of the url</h3></td>
               </tr>
             </thead>
             <tbody>
@@ -30,8 +32,8 @@ class ListComponent extends Component{
                   return(
                     <tr key={i}>
                       <td>{x.actualURL}</td>
-                      <td>{x.shortURL}</td>
-                      <td><button className="Button-delete" onClick = {this.handleDelete}>Remove</button></td>
+                      <td><a href = {x.actualURL}>{x.shortURL}</a></td>
+                      <td><button className="Button-delete" onClick = {()=>this.handleDelete(x.id)}>Remove</button></td>
                     </tr>
                 )
               }
