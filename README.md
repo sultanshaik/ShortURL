@@ -7,3 +7,7 @@ The list of urls are added to the database in the backend and the same is fetche
 Use the command prompt to run the Spring boot application with the command : mvn spring-boot:run in the directory "ShortenURLtask\Shorturltaskleverton"
 
 To start the React Application, run yarn start in the directory "ShortenURLtask\ReactAPP"
+
+Note:  The application assumes Spring-boot run at port 8080 and React server runs at port 3000. 
+
+
